@@ -38,7 +38,7 @@ function UpdateBookInfo() {
       method: 'PUT', headers:
         { "Content-Type": "application/json" }, body: JSON.stringify(book)
     })
-      .then((res) => {
+      .then(() => {
         router.push(`/show-book/${id}`);
       })
       .catch((err) => {
