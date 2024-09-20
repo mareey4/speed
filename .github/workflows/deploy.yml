@@ -1,42 +1,13 @@
-name: Deploy to Vercel
+name: GitHub Actions Deploy Production
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  deploy-prod-backend:
+    uses: ./deploy-backend-vercel-prod.yml
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      - name: Install frontend dependencies
-        working-directory: ./frontend
-        run: npm install
-
-      - name: Build frontend
-        working-directory: ./frontend
-        run: npm run build
-
-      - name: Install backend dependencies
-        working-directory: ./backend
-        run: npm install
-
-      - name: Build backend
-        working-directory: ./backend
-        run: npm run build
-
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel --prod --token $VERCEL_TOKEN
+  deploy-prod-frontend:
+    needs: deploy-prod-backend
+    uses: ./deploy-frontend-vercel-prod.yml
