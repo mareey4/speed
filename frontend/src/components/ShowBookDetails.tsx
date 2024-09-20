@@ -27,7 +27,7 @@ function ShowBookDetails() {
 
   const onDeleteClick = async (id: string) => {
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/books/${id}`, { method: 'DELETE' })
-    .then((res) => {
+    .then(() => {
       navigate.push('/');
     })
     .catch((err) => {
