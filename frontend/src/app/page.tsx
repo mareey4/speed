@@ -1,5 +1,7 @@
+import Link from 'next/link';
 
 export default function Home() {
+  const buttonClass = "bg-blue-600 text-white p-4 w-32 h-32 flex items-center justify-center rounded-lg hover:bg-blue-700 transition";
 
   return (
     <div className="min-h-screen">
