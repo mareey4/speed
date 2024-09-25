@@ -10,6 +10,22 @@ export default function Home() {
           <br />
           The Software Empirical Evidence Database is the best ever!
         </p>
+
+        {/* Button Section */}
+        <div className="flex justify-center space-x-4 mt-8">
+          <Link href="/admin" className={buttonClass}>
+            Admin
+          </Link>
+          <Link href="/user" className={buttonClass}>
+            User
+          </Link>
+          <Link href="/moderator" className={buttonClass}>
+            Moderator
+          </Link>
+          <Link href="/analyst" className={buttonClass}>
+            Analyst
+          </Link>
+        </div>
       </main>
     </div>
   );
