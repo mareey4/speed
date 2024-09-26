@@ -33,7 +33,8 @@ const CreateBookComponent = () => {
         throw new Error('Failed to submit the article');
       }
     } catch (error) {
-      toast.error('Error: ' + error.message);
+      const err = error as Error;
+      toast.error('Error: ' + err.message);
     }
   };
 
