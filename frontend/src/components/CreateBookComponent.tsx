@@ -48,11 +48,15 @@ const CreateBookComponent = () => {
             <Link href="/" className={buttonClass}>
                   Show Book List
             </Link>
-            </div>
-            <div className="col-md-10 m-auto">
-              <h1 className="text-6xl font-bold">Add Book</h1>
-              <p className="text-3xl font-semibold mt-2">Create new book</p>
-              <form noValidate onSubmit={onSubmit}>
+          </div>
+          <div className="col-md-10 m-auto">
+            <h1 className="text-6xl font-bold">Add Book</h1>
+            <p className="text-3xl font-semibold mt-2">Create new book</p>
+
+            {/* Toastify container to render toasts */}
+            <ToastContainer />
+
+            <form noValidate onSubmit={onSubmit}>
               <div className="form-group">
                 <input
                   type="text"
