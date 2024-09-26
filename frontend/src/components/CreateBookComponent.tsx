@@ -2,28 +2,39 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Book, DefaultEmptyBook } from "./Book";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateBookComponent = () => {
   const navigate = useRouter();
   const [book, setBook] = useState<Book>(DefaultEmptyBook);
 
- const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setBook({ ...book, [event.target.name]: event.target.value });
   };
 
-   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log(book);
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books`, {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(book)})
-    .then((res) => {
-        console.log(res);
-        setBook(DefaultEmptyBook);
-        // Push to /
-        navigate.push("/");
-      })
-      .catch((err) => {
-        console.log('Error from CreateBook: ' + err);
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(book),
       });
+
+      if (response.ok) {
+        setBook(DefaultEmptyBook);
+        toast.success('Book submitted successfully!');
+        setTimeout(() => {
+          navigate.push('/');
+        }, 10000);
+      } else {
+        throw new Error('Failed to submit the article');
+      }
+    } catch (error) {
+      toast.error('Error: ' + error.message);
+    }
   };
 
   const buttonClass = "bg-blue-600 text-white p-2 w-24 h-15 flex items-center justify-center rounded-lg hover:bg-blue-700 transition";
