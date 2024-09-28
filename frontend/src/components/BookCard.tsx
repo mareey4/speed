@@ -20,11 +20,11 @@ const BookCard = ({ book }: IProp) => {
     <div
       className='card-container'
       onClick={onClick}>
-      <Image
+      {/* <Image
         src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
         alt='Books'
         height={200}
-      />
+      /> */}
       <div
         className='desc'>
         <h2>

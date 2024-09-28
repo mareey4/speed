@@ -4,43 +4,46 @@ import BookCard from './BookCard';
 import { Book } from './Book';
 
 function ShowBookList() {
-  const [books, setBooks] = useState<[Book?]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
 
-  useEffect(() => {( async() => {
-    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/books')
-    .then((res) => {
-      return res.json();
-    })
-    .then((books) => {
-      setBooks(books);
-    })
-    .catch((err) => {
-      console.log('Error from ShowBookList: ' + err);
-    });
-  });
-  }, []);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/books');
+        if (!res.ok) {
+          throw new Error('Failed to fetch books');
+        }
+        const books = await res.json();
+        setBooks(books);
+      } catch (err) {
+        console.log('Error from ShowBookList: ' + err);
+      }
+    };
 
-  const bookList = books.length == 0 ? 'there is no book record!' : books.map((book, k) => <BookCard book={book} key={k} />);
+    fetchBooks();
+  }, []); 
+
+  const bookList = books.length === 0 ? 'There is no book record!' : books.map((book, k) => <BookCard book={book} key={k} />);
 
   return (
-    <div
+    <div 
       className='ShowBookList'>
-      <div
+      <div 
         className='container'>
-        <div
+        <div 
           className='row'>
-          <div
+          <div 
             className='col-md-12'>
             <br />
-            <h2
+            <h2 
               className='display-4 text-center'>Books List</h2>
           </div>
-          <div
+          <div 
             className='col-md-11'>
-            <Link
-              href='/create-book'
+            <Link 
+              href='/create-book' 
               className='btn btn-outline-warning float-right'
-            >
+              >
               + Add New Book
             </Link>
             <br />
@@ -48,7 +51,7 @@ function ShowBookList() {
             <hr />
           </div>
         </div>
-        <div
+        <div 
           className='list'>{bookList}</div>
       </div>
     </div>
