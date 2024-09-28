@@ -9,6 +9,7 @@ function ShowBookDetails() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook)
 
   const id = useParams<{ id: string }>().id;
+  
   const navigate = useRouter();
 
   useEffect(() => {

@@ -1,9 +1,9 @@
 'use client'
 
-import ShowBookList from "@/components/ShowBookList";
+import ShowToAnalyse from "@/components/analyst/ShowToAnalyse"
 
 export default function ShowBook() {
   return (
-    <ShowBookList />
+    <ShowToAnalyse />
   )
 }
