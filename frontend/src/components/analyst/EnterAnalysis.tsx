@@ -54,13 +54,11 @@ console.log(book.title);
             </Link>
           </div>
           <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Edit Book</h1>
-            <p className='lead text-center'>Update Book's Info & Analysis</p>
+            <h1 className='lead text-center'>Enter Analysis</h1>
           </div>
         </div>
         <div className='col-md-8 m-auto'>
           <form noValidate onSubmit={onSubmit}>
-            {/* Title */}
             <div className='form-group'>
               <label htmlFor='title'>Title</label>
               <input
@@ -74,7 +72,6 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* ISBN */}
             <div className='form-group'>
               <label htmlFor='isbn'>ISBN</label>
               <input
@@ -88,7 +85,6 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* Author */}
             <div className='form-group'>
               <label htmlFor='author'>Author</label>
               <input
@@ -102,7 +98,6 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* Description */}
             <div className='form-group'>
               <label htmlFor='description'>Description</label>
               <textarea
@@ -115,7 +110,6 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* Published Date */}
             <div className='form-group'>
               <label htmlFor='published_date'>Published Date</label>
               <input
@@ -129,7 +123,6 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* Publisher */}
             <div className='form-group'>
               <label htmlFor='publisher'>Publisher</label>
               <input
@@ -143,14 +136,13 @@ console.log(book.title);
               />
             </div>
             <br />
-            {/* Analysis */}
             <div className='form-group'>
               <label htmlFor='analysis'>Analysis</label>
               <textarea
                 placeholder='Enter your analysis here'
                 name='analysis'
                 className='form-control'
-                value={book.analysis || ''} // Add this field in your Book model
+                value={book.analysis || ''}
                 onChange={textAreaOnChange}
                 style={{color:'black'}}
               />
