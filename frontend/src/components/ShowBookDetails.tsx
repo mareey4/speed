@@ -85,6 +85,12 @@ function ShowBookDetails() {
             <td>Description</td>
             <td>{book.description}</td>
           </tr>
+          <tr>
+            <th
+              scope='row'>7</th>
+            <td>Analysis</td>
+            <td>{book.analysis}</td>
+          </tr>
         </tbody>
       </table>
     </div>

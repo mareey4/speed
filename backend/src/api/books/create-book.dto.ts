@@ -6,4 +6,5 @@ export class CreateBookDto {
   published_date: Date;
   publisher: string;
   updated_date: Date;
+  analysis: string;
 }
