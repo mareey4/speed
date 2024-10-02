@@ -1,7 +1,7 @@
 import React from 'react';
 import { Book } from './Book';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+//import Image from 'next/image';
 
 
 interface IProp {
