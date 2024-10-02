@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import BookCard from "./BookCard";
-import { Book } from "./Book";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import BookCard from './BookCard';
+import { Book } from './Book';
 
 function ShowBookList() {
   const [books, setBooks] = useState<Book[]>([]);
