@@ -9,7 +9,7 @@ const CreateBookComponent = () => {
   const navigate = useRouter();
   const [book, setBook] = useState<Book>({
     ...DefaultEmptyBook,
-    analysis: "" // Initialize analysis field with an empty string
+    analysis: ""
   });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {

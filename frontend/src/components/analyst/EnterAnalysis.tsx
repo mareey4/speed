@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Book, DefaultEmptyBook } from '../Book';
-import Link from 'next/link';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Book, DefaultEmptyBook } from "../Book";
+import Link from "next/link";
 
 function EnterAnalysis() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook);
@@ -14,7 +14,7 @@ function EnterAnalysis() {
         .then((res) => res.json())
         .then((json) => setBook(json))
         .catch((err) => {
-          console.log('Error from EnterAnalysis: ' + err);
+          console.log("Error from EnterAnalysis: " + err);
         });
     })();
   }, [id]);
@@ -31,124 +31,127 @@ function EnterAnalysis() {
     event.preventDefault();
 
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/books/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(book),
     })
       .then(() => {
         router.push(`/show-book/${id}`);
       })
       .catch((err) => {
-        console.log('Error from EnterAnalysis: ' + err);
+        console.log("Error from EnterAnalysis: " + err);
       });
   };
-console.log(book.title);
+  console.log(book.title);
   return (
-    <div className='EnterAnalysis'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-8 m-auto'>
+    <div className="EnterAnalysis">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
             <br />
-            <Link href='/' className='btn btn-outline-warning float-left'>
+            <Link href="/" className="btn btn-outline-warning float-left">
               Show Book List
             </Link>
           </div>
-          <div className='col-md-8 m-auto'>
-            <h1 className='lead text-center'>Enter Analysis</h1>
+          <div className="col-md-8 m-auto">
+            <h1 className="lead text-center">Enter Analysis</h1>
           </div>
         </div>
-        <div className='col-md-8 m-auto'>
+        <div className="col-md-8 m-auto">
           <form noValidate onSubmit={onSubmit}>
-            <div className='form-group'>
-              <label htmlFor='title'>Title</label>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
               <input
-                type='text'
-                placeholder='Title of the Book'
-                name='title'
-                className='form-control'
+                type="text"
+                placeholder="Title of the Book"
+                name="title"
+                className="form-control"
                 value={book.title}
                 onChange={inputOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='isbn'>ISBN</label>
+            <div className="form-group">
+              <label htmlFor="isbn">ISBN</label>
               <input
-                type='text'
-                placeholder='ISBN'
-                name='isbn'
-                className='form-control'
+                type="text"
+                placeholder="ISBN"
+                name="isbn"
+                className="form-control"
                 value={book.isbn}
                 onChange={inputOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='author'>Author</label>
+            <div className="form-group">
+              <label htmlFor="author">Author</label>
               <input
-                type='text'
-                placeholder='Author'
-                name='author'
-                className='form-control'
+                type="text"
+                placeholder="Author"
+                name="author"
+                className="form-control"
                 value={book.author}
                 onChange={inputOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='description'>Description</label>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
               <textarea
-                placeholder='Description of the Book'
-                name='description'
-                className='form-control'
+                placeholder="Description of the Book"
+                name="description"
+                className="form-control"
                 value={book.description}
                 onChange={textAreaOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='published_date'>Published Date</label>
+            <div className="form-group">
+              <label htmlFor="published_date">Published Date</label>
               <input
-                type='text'
-                placeholder='Published Date'
-                name='published_date'
-                className='form-control'
+                type="text"
+                placeholder="Published Date"
+                name="published_date"
+                className="form-control"
                 value={book.published_date?.toString()}
                 onChange={inputOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='publisher'>Publisher</label>
+            <div className="form-group">
+              <label htmlFor="publisher">Publisher</label>
               <input
-                type='text'
-                placeholder='Publisher of the Book'
-                name='publisher'
-                className='form-control'
+                type="text"
+                placeholder="Publisher of the Book"
+                name="publisher"
+                className="form-control"
                 value={book.publisher}
                 onChange={inputOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <div className='form-group'>
-              <label htmlFor='analysis'>Analysis</label>
+            <div className="form-group">
+              <label htmlFor="analysis">Analysis</label>
               <textarea
-                placeholder='Enter your analysis here'
-                name='analysis'
-                className='form-control'
-                value={book.analysis || ''}
+                placeholder="Enter your analysis here"
+                name="analysis"
+                className="form-control"
+                value={book.analysis || ""}
                 onChange={textAreaOnChange}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
             </div>
             <br />
-            <button type='submit' className='btn btn-outline-info btn-lg btn-block'>
+            <button
+              type="submit"
+              className="btn btn-outline-info btn-lg btn-block"
+            >
               Update Book
             </button>
           </form>
