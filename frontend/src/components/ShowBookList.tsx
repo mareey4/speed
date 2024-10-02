@@ -31,17 +31,17 @@ function ShowBookList() {
       : books.map((book, k) => <BookCard book={book} key={k} />);
 
   return (
-    <div className="ShowBookList">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
+    <div className='ShowBookList'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-12'>
             <br />
-            <h2 className="display-4 text-center">Books List</h2>
+            <h2 className='display-4 text-center'>Books List</h2>
           </div>
-          <div className="col-md-11">
+          <div className='col-md-11'>
             <Link
-              href="/create-book"
-              className="btn btn-outline-warning float-right"
+              href='/create-book'
+              className='btn btn-outline-warning float-right'
             >
               + Add New Book
             </Link>
@@ -50,7 +50,7 @@ function ShowBookList() {
             <hr />
           </div>
         </div>
-        <div className="list">{bookList}</div>
+        <div className='list'>{bookList}</div>
       </div>
     </div>
   );
