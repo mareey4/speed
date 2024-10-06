@@ -12,6 +12,24 @@ export default function Home() {
         </p>
 
         <div className="flex justify-center space-x-4 mt-8">
+
+          {/* Search Section */}
+          <form onSubmit={handleSearch} className="flex space-x-2">
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="p-4 w-64 rounded-lg border border-gray-300"
+              style={{ color: 'black', backgroundColor: 'white', borderColor: 'white', width: '100%', borderRadius: '8px' }}
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition"
+            >
+              Search
+            </button>
+          </form>
         </div>
       </main>
     </div>
