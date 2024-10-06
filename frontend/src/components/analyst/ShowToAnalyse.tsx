@@ -33,12 +33,6 @@ function ShowToAnalyse() {
             <h2 className="display-4 text-center">Books List</h2>
           </div>
           <div className="col-md-11">
-            <Link
-              href="/create-book"
-              className="btn btn-outline-warning float-right"
-            >
-              + Add New Book
-            </Link>
             <br />
             <br />
             <hr />
