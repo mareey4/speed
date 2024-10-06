@@ -31,6 +31,7 @@ export default function Home() {
             </button>
           </form>
         </div>
+          <ShowToAnalyse />
       </main>
     </div>
   );
