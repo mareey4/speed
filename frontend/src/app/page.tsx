@@ -1,5 +1,21 @@
+"use client";
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import ShowToAnalyse from '@/components/analyst/ShowToAnalyse';
 
 export default function Home() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (searchQuery.trim()) {
+      router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <div className="min-h-screen">
