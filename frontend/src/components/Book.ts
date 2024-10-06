@@ -7,6 +7,7 @@ export type Book = {
     published_date?: Date;
     publisher?: string;
     updated_date?: Date;
+    analysis?: string;
   };
 
   export const DefaultEmptyBook: Book = {
@@ -17,5 +18,6 @@ export type Book = {
     description: '',
     published_date: undefined,
     publisher: '',
-    updated_date: undefined
+    updated_date: undefined,
+    analysis: ''
   }

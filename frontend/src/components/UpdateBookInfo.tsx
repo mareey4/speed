@@ -156,6 +156,19 @@ function UpdateBookInfo() {
                 onChange={inputOnChange}
               />
             </div>
+            <br />  
+            <div
+              className='form-group'>
+              <label
+                htmlFor='analysis'>Analysis</label>
+              <textarea
+                placeholder='Description of the Book'
+                name='analysis'
+                className='form-control'
+                value={book.analysis}
+                onChange={textAreaOnChange}
+              />
+            </div>
             <br />
             <button
               type='submit'
