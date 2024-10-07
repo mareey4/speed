@@ -1,3 +1,10 @@
+export enum BookStatus {
+  Analyzed = "Analyzed",
+  Submitted = "Submitted",
+  Accepted = "Accepted", 
+  Rejected = "Rejected"    
+}
+
 export class CreateBookDto {
   title: string;
   isbn: string;
@@ -6,4 +13,9 @@ export class CreateBookDto {
   published_date: Date;
   publisher: string;
   updated_date: Date;
+  status: BookStatus;
+
+  constructor() {
+    this.status = BookStatus.Submitted; 
+  }
 }

@@ -1,16 +1,17 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Book, DefaultEmptyBook } from "./Book";
+import { Book, DefaultEmptyBook, BookStatus } from "./Book";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateBookComponent = () => {
   const navigate = useRouter();
-  const [book, setBook] = useState<Book>(DefaultEmptyBook);
+  const [book, setBook] = useState<Book>({ ...DefaultEmptyBook, status: BookStatus.Submitted });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setBook({ ...book, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setBook({ ...book, [name]: value });
   };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -24,13 +25,13 @@ const CreateBookComponent = () => {
       });
 
       if (response.ok) {
-        setBook(DefaultEmptyBook);
+        setBook({ ...DefaultEmptyBook, status: BookStatus.Submitted });
         toast.success('Book submitted successfully!');
         setTimeout(() => {
           navigate.push('/');
-        }, 10000);
+        }, 1000);
       } else {
-        throw new Error('Failed to submit the article');
+        throw new Error('Failed to submit the book');
       }
     } catch (error) {
       const err = error as Error;
@@ -134,6 +135,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
+
           <button
             type="submit"
             className={buttonClass}

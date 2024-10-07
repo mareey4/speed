@@ -1,9 +1,9 @@
 'use client'
 
-import ShowBookList from "@/components/ShowBookList";
+import Moderation from "@/components/Moderation";
 
 export default function ShowBook() {
   return (
-    <ShowBookList />
+    <Moderation/>
   )
 }

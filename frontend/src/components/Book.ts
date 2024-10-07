@@ -1,21 +1,30 @@
-export type Book = {
-    _id?: string;
-    title?: string;
-    isbn?: string;
-    author?: string;
-    description?: string;
-    published_date?: Date;
-    publisher?: string;
-    updated_date?: Date;
-  };
+export enum BookStatus {
+  Analyzed = "Analyzed",
+  Submitted = "Submitted",
+  Accepted = "Accepted",  
+  Rejected = "Rejected"    
+}
 
-  export const DefaultEmptyBook: Book = {
-    _id: undefined,
-    title: '',
-    isbn: '',
-    author: '',
-    description: '',
-    published_date: undefined,
-    publisher: '',
-    updated_date: undefined
-  }
+export type Book = {
+  _id?: string;
+  title?: string;
+  isbn?: string;
+  author?: string;
+  description?: string;
+  published_date?: Date;
+  publisher?: string;
+  updated_date?: Date;
+  status?: BookStatus; 
+};
+
+export const DefaultEmptyBook: Book = {
+  _id: undefined,
+  title: '',
+  isbn: '',
+  author: '',
+  description: '',
+  published_date: undefined,
+  publisher: '',
+  updated_date: undefined,
+  status: BookStatus.Submitted,
+};
