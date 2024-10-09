@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Book, BookStatus } from './Book';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Moderation.css';
 
 function Moderation() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -157,16 +158,19 @@ function Moderation() {
         </table>
 
         {selectedBook && (
-          <div className="book-details">
-            <h1>{selectedBook.title}</h1>
-            <p><strong>Author:</strong> {selectedBook.author}</p>
-            <p><strong>Description:</strong> {selectedBook.description}</p>
-            <p><strong>ISBN:</strong> {selectedBook.isbn}</p>
-            <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
-            <p><strong>Status:</strong> {selectedBook.status}</p>
-            <button onClick={handleCloseDetails} className="btn btn-secondary">Close</button>
-          </div>
-        )}
+  <>
+    <div className="backdrop" onClick={handleCloseDetails}></div>
+    <div className="book-details">
+      <h1>{selectedBook.title}</h1>
+      <p><strong>Author:</strong> {selectedBook.author}</p>
+      <p><strong>Description:</strong> {selectedBook.description}</p>
+      <p><strong>ISBN:</strong> {selectedBook.isbn}</p>
+      <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
+      <p><strong>Status:</strong> {selectedBook.status}</p>
+      <button onClick={handleCloseDetails} className="btn btn-secondary">Close</button>
+    </div>
+  </>
+)}
       </div>
       <ToastContainer />
     </div>
