@@ -49,9 +49,6 @@ function EnterAnalysis() {
         <div className="row">
           <div className="col-md-8 m-auto">
             <br />
-            <Link href="/" className="btn btn-outline-warning float-left">
-              Show Book List
-            </Link>
           </div>
           <div className="col-md-8 m-auto">
             <h1 className="lead text-center">Enter Analysis</h1>
@@ -61,83 +58,36 @@ function EnterAnalysis() {
           <form noValidate onSubmit={onSubmit}>
             <div className="form-group">
               <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                placeholder="Title of the Book"
-                name="title"
-                className="form-control"
-                value={book.title}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.title}</p>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="isbn">ISBN</label>
-              <input
-                type="text"
-                placeholder="ISBN"
-                name="isbn"
-                className="form-control"
-                value={book.isbn}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.isbn}</p>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="author">Author</label>
-              <input
-                type="text"
-                placeholder="Author"
-                name="author"
-                className="form-control"
-                value={book.author}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.author}</p>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="description">Description</label>
-              <textarea
-                placeholder="Description of the Book"
-                name="description"
-                className="form-control"
-                value={book.description}
-                onChange={textAreaOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.description}</p>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="published_date">Published Date</label>
-              <input
-                type="text"
-                placeholder="Published Date"
-                name="published_date"
-                className="form-control"
-                value={book.published_date?.toString()}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.published_date}</p>
             </div>
             <br />
             <div className="form-group">
               <label htmlFor="publisher">Publisher</label>
-              <input
-                type="text"
-                placeholder="Publisher of the Book"
-                name="publisher"
-                className="form-control"
-                value={book.publisher}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
+              <p>{book.publisher}</p>
             </div>
             <br />
             <div className="form-group">
-              <label htmlFor="analysis">Analysis</label>
+              <label htmlFor="analysis">Analysis</label><br/>
               <textarea
                 placeholder="Enter your analysis here"
                 name="analysis"
