@@ -29,4 +29,12 @@ export class BookService {
   async delete(id: string): Promise<Book> {
     return this.bookModel.findByIdAndDelete(id).exec();
   }
+
+  async search(query: string): Promise<Book[]> {
+    return this.bookModel
+      .find({
+        title: { $regex: query, $options: 'i' },
+      })
+      .exec();
+  }
 }
