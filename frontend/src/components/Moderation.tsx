@@ -161,13 +161,13 @@ function Moderation() {
   <>
     <div className="backdrop" onClick={handleCloseDetails}></div>
     <div className="book-details">
+      <button onClick={handleCloseDetails} className="btn-close" aria-label="Close">x</button>
       <h1>{selectedBook.title}</h1>
       <p><strong>Author:</strong> {selectedBook.author}</p>
       <p><strong>Description:</strong> {selectedBook.description}</p>
       <p><strong>ISBN:</strong> {selectedBook.isbn}</p>
       <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
       <p><strong>Status:</strong> {selectedBook.status}</p>
-      <button onClick={handleCloseDetails} className="btn btn-secondary">Close</button>
     </div>
   </>
 )}
