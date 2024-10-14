@@ -9,21 +9,29 @@ function ShowBookDetails() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook)
 
   const id = useParams<{ id: string }>().id;
+  
   const navigate = useRouter();
 
-  useEffect(() => {( async() => {
-    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/books/${id}`)
-    .then((res) => {
-      return res.json()
-    })
-    .then((json) => {
-      setBook(json);
-    })
-    .catch((err) => {
-      console.log('Error from ShowBookDetails: ' + err);
-    });
-  });
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        try {
+          const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/books/${id}`);
+          if (!res.ok) {
+            throw new Error(`Failed to fetch book details: ${res.statusText}`);
+          }
+          const text = await res.text();
+          if (text) {
+            const json = JSON.parse(text);
+            setBook(json);
+          }
+        } catch (err) {
+          console.log('Error from ShowBookDetails: ' + err);
+        }
+      })();
+    }
   }, [id]);
+  
 
   const onDeleteClick = async (id: string) => {
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/api/books/${id}`, { method: 'DELETE' })
@@ -76,6 +84,12 @@ function ShowBookDetails() {
               scope='row'>6</th>
             <td>Description</td>
             <td>{book.description}</td>
+          </tr>
+          <tr>
+            <th
+              scope='row'>7</th>
+            <td>Analysis</td>
+            <td>{book.analysis}</td>
           </tr>
         </tbody>
       </table>

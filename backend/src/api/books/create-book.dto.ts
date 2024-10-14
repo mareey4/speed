@@ -14,8 +14,10 @@ export class CreateBookDto {
   publisher: string;
   updated_date: Date;
   status: BookStatus;
-
+  analysis: string;
+  
   constructor() {
     this.status = BookStatus.Submitted; 
   }
+  
 }

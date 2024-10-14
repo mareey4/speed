@@ -7,7 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateBookComponent = () => {
   const navigate = useRouter();
-  const [book, setBook] = useState<Book>({ ...DefaultEmptyBook, status: BookStatus.Submitted });
+  const [book, setBook] = useState<Book>({
+    ...DefaultEmptyBook,
+    status: BookStatus.Submitted,
+    analysis: ""
+  });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -25,7 +29,7 @@ const CreateBookComponent = () => {
       });
 
       if (response.ok) {
-        setBook({ ...DefaultEmptyBook, status: BookStatus.Submitted });
+        setBook({ ...DefaultEmptyBook, status: BookStatus.Submitted, analysis: "" });
         toast.success('Book submitted successfully!');
         setTimeout(() => {
           navigate.push('/');
@@ -135,6 +139,9 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
+
+          {/* Invisible field for analysis */}
+          <input type="hidden" name="analysis" value={book.analysis} />
 
           <button
             type="submit"
