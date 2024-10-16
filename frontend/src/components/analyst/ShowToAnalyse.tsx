@@ -33,6 +33,9 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
     fetchBooks();
   }, [filterByAnalysis]);
 
+  const buttonClass =
+    "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
+
   return (
     <div className="ShowToAnalyse">
       <div className="container">
@@ -99,12 +102,8 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                     ) : (
                       <Link
                         href={`/analyse-book/${book._id}`}
-                        className="btn btn-outline-info btn-sm"
-                        style={{
-                          backgroundColor: "#FF69B4",
-                          color: "white",
-                          padding: "3px",
-                        }}
+                        className={buttonClass}
+                        style={{ width: "80%" }}
                       >
                         Add analysis
                       </Link>
