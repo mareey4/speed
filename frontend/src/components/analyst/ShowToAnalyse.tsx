@@ -8,6 +8,7 @@ interface ShowToAnalyseProps {
 
 function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
   const [books, setBooks] = useState<Book[]>([]);
+  const [modalContent, setModalContent] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -35,6 +36,14 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
 
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
+
+  const handleOpenModal = (analysis: string) => {
+    setModalContent(analysis);
+  };
+
+  const handleCloseModal = () => {
+    setModalContent(null);
+  };
 
   return (
     <div className="ShowToAnalyse">
@@ -100,7 +109,23 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
                     {book.analysis ? (
-                      <div className="text-success">{book.analysis}</div>
+                      <>
+                        <div className="text-success">
+                          {/*if long analysis, give link to open modal containing full analysis */}
+                          {book.analysis.length > 100
+                            ? `${book.analysis.slice(0, 100)}...`
+                            : book.analysis}
+                        </div>
+                        {book.analysis.length > 100 && (
+                          <button
+                            className="btn btn-primary mt-2"
+                            onClick={() => handleOpenModal(book.analysis)}
+                            style={{color:"dodgerblue"}}
+                          >
+                            Read more
+                          </button>
+                        )}
+                      </>
                     ) : (
                       <Link
                         href={`/analyse-book/${book._id}`}
@@ -117,6 +142,51 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
           </tbody>
         </table>
       </div>
+
+      {/* Modal to display the full analysis */}
+      {modalContent && (
+        <div className="modal" 
+            style={{ 
+            display: "flex",
+            position: "fixed",
+            zIndex: 1,
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+          <div className="modal-content" 
+            style={{  
+              backgroundColor: "white",
+              color: "black",
+              padding: "20px",
+              borderRadius: "5px",
+              maxWidth: "600px",
+              width: "90%"
+            }}>
+            <span
+              className="close"
+              style={{  
+                position: "absolute",
+                right: "20px",
+                top: "50px",
+                fontSize: "3.5rem",
+                cursor: "pointer",
+                color:"red"
+              }}
+              onClick={handleCloseModal}
+            >
+              &times;
+            </span>
+            <div className="modal-body">
+              <p>{modalContent}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
