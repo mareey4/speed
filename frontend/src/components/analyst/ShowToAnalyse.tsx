@@ -72,6 +72,7 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
               <th style={{ width: "15%", padding: "10px" }}>Author</th>
               <th style={{ width: "30%", padding: "10px" }}>Description</th>
               <th style={{ width: "15%", padding: "10px" }}>Published Date</th>
+              <th style={{ width: "15%", padding: "10px" }}>Publisher</th>
               <th style={{ width: "15%", padding: "10px" }}>Analysis</th>
             </tr>
           </thead>
@@ -96,6 +97,7 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                     {book.description}
                   </td>
                   <td style={{ padding: "10px" }}>{book.published_date}</td>
+                  <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
                     {book.analysis ? (
                       <div className="text-success">{book.analysis}</div>

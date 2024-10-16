@@ -111,6 +111,7 @@ function EnterAnalysis() {
               name: "published_date",
               value: book.published_date?.toString(),
             },
+            { label: "Publisher", name: "publisher", value: book.publisher },
           ].map((field) => (
             <div
               className="form-group"

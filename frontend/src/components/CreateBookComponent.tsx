@@ -129,6 +129,18 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Publisher of this Book"
+              name="publisher"
+              className="form-control"
+              value={book.publisher}
+              onChange={onChange}
+              style={{ color: 'black', backgroundColor: 'white', borderColor: 'white', width: '100%', borderRadius: '8px' }}
+            />
+          </div>
+          <br />
 
           {/* Invisible field for analysis */}
           <input type="hidden" name="analysis" value={book.analysis} />
