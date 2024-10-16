@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { Book } from "../Book";
 import Link from "next/link";
 
-const AdminView = () =>
-{
-    const [books, setBooks] = useState<Book[]>([]);
+const AdminView = () => {
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -28,6 +27,7 @@ const AdminView = () =>
 
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
+
   return (
     <div className="AdminView">
       <div className="container">
@@ -42,7 +42,6 @@ const AdminView = () =>
             </h2>
           </div>
           <div className="col-md-11">
-            <br />
             <br />
             <hr />
           </div>
@@ -104,7 +103,6 @@ const AdminView = () =>
       </div>
     </div>
   );
+};
 
-}
-
-export default AdminView
+export default AdminView;
