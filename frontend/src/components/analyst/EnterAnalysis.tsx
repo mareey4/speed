@@ -180,6 +180,7 @@ function EnterAnalysis() {
                 padding: "10px",
                 borderRadius: "5px",
                 border: "1px solid #ddd",
+                color: "black",
               }}
             />
           </div>
@@ -207,11 +208,13 @@ function EnterAnalysis() {
                 padding: "10px",
                 borderRadius: "5px",
                 border: "1px solid #ddd",
+                color: "black",
               }}
             />
           </div>
 
           <button
+            type="submit"
             className={buttonClass}
             style={{
               margin: "0 auto",
