@@ -56,16 +56,21 @@ const CreateBookComponent = () => {
     >
       <div style={{ width: '100%', maxWidth: '600px' }}>
         <div className="text-center mb-8">
-          <Link href="/" className={buttonClass} style={{ width: 'fit-content', margin: '0 auto', marginBottom: '20px' }}>
           <h1 className="text-6xl font-bold">Add an Article</h1>
+          <br/>
+          <Link
+            href="/"
+            className={buttonClass}
+            style={{ width: 'fit-content', margin: '0 auto', marginBottom: '20px' }}
+          >
             Show Book List
           </Link>
         </div>
 
         <ToastContainer />
 
-        <form noValidate onSubmit={onSubmit}>
-          <div className="form-group">
+        <form noValidate onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="Title of the Article"
@@ -77,7 +82,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="ISBN"
@@ -89,7 +94,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="Author"
@@ -101,7 +106,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="Describe this article"
@@ -113,7 +118,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="date"
               name="published_date"
@@ -143,7 +148,7 @@ const CreateBookComponent = () => {
           <button
             type="submit"
             className={buttonClass}
-            style={{ width: '100%' }}
+            style={{ width: '25%' }}
           >
             Submit
           </button>
