@@ -41,7 +41,7 @@ export default function Navbar() {
             Admin
           </Link>
           <Link href="/user" className={`${baseNavLinkClass} ${pathname === '/user' ? activeNavLinkClass : inactiveNavLinkClass}`}>
-            User
+            Add an Article
           </Link>
           <Link href="/moderator" className={`${baseNavLinkClass} ${pathname === '/moderator' ? activeNavLinkClass : inactiveNavLinkClass}`}>
             Moderator
