@@ -37,17 +37,17 @@ export default function Navbar() {
           <Link href="/" className={`${baseNavLinkClass} ${pathname === '/' ? activeNavLinkClass : inactiveNavLinkClass}`}>
             Home
           </Link>
-          <Link href="/admin" className={`${baseNavLinkClass} ${pathname === '/admin' ? activeNavLinkClass : inactiveNavLinkClass}`}>
-            Admin
-          </Link>
           <Link href="/user" className={`${baseNavLinkClass} ${pathname === '/user' ? activeNavLinkClass : inactiveNavLinkClass}`}>
             Add an Article
+          </Link>
+          <Link href="/analyst" className={`${baseNavLinkClass} ${pathname === '/analyst' ? activeNavLinkClass : inactiveNavLinkClass}`}>
+            Analyst
           </Link>
           <Link href="/moderator" className={`${baseNavLinkClass} ${pathname === '/moderator' ? activeNavLinkClass : inactiveNavLinkClass}`}>
             Moderator
           </Link>
-          <Link href="/analyst" className={`${baseNavLinkClass} ${pathname === '/analyst' ? activeNavLinkClass : inactiveNavLinkClass}`}>
-            Analyst
+          <Link href="/admin" className={`${baseNavLinkClass} ${pathname === '/admin' ? activeNavLinkClass : inactiveNavLinkClass}`}>
+            Admin
           </Link>
         </div>
       </div>
