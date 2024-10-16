@@ -80,18 +80,31 @@ function ShowToAnalyse() {
               </tr>
             ) : (
               books.map((book) => (
-                <tr key={book._id}>
-                  <td>{book.title}</td>
-                  <td>{book.author}</td>
-                  <td>{book.description}</td>
-                  <td>
-                    <Link
-                      href={`/analyse-book/${book._id}`}
-                      className="btn btn-outline-info btn-sm"
-                      style={{ backgroundColor: "dodgerblue", padding: "3px" }}
-                    >
-                      Add analysis
-                    </Link>
+                <tr key={book._id} style={{ borderBottom: "1px solid #ddd" }}>
+                  <td style={{ padding: "10px" }}>{book.title}</td>
+                  <td style={{ padding: "10px" }}>{book.isbn}</td>
+                  <td style={{ padding: "10px" }}>{book.author}</td>
+                  <td style={{ padding: "10px", wordWrap: "break-word" }}>
+                    {book.description}
+                  </td>{" "}
+                  {/* Handles long text */}
+                  <td style={{ padding: "10px" }}>{book.published_date}</td>
+                  <td style={{ padding: "10px" }}>
+                    {book.analysis ? (
+                      <div className="text-success">{book.analysis}</div>
+                    ) : (
+                      <Link
+                        href={`/analyse-book/${book._id}`}
+                        className="btn btn-outline-info btn-sm"
+                        style={{
+                          backgroundColor: "#FF69B4",
+                          color: "white",
+                          padding: "3px",
+                        }}
+                      >
+                        Add analysis
+                      </Link>
+                    )}
                   </td>
                 </tr>
               ))
