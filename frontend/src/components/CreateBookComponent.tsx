@@ -41,7 +41,7 @@ const CreateBookComponent = () => {
     }
   };
 
-  const buttonClass = "bg-blue-600 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-blue-700 transition";
+  const buttonClass = "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
 
   return (
     <div
@@ -56,9 +56,8 @@ const CreateBookComponent = () => {
     >
       <div style={{ width: '100%', maxWidth: '600px' }}>
         <div className="text-center mb-8">
-          <h1 className="text-6xl font-bold">Add Book</h1>
-          <p className="text-3xl font-semibold mt-2">Create new book</p>
           <Link href="/" className={buttonClass} style={{ width: 'fit-content', margin: '0 auto', marginBottom: '20px' }}>
+          <h1 className="text-6xl font-bold">Add an Article</h1>
             Show Book List
           </Link>
         </div>
@@ -69,7 +68,7 @@ const CreateBookComponent = () => {
           <div className="form-group">
             <input
               type="text"
-              placeholder="Title of the Book"
+              placeholder="Title of the Article"
               name="title"
               className="form-control"
               value={book.title}
@@ -105,7 +104,7 @@ const CreateBookComponent = () => {
           <div className="form-group">
             <input
               type="text"
-              placeholder="Describe this book"
+              placeholder="Describe this article"
               name="description"
               className="form-control"
               value={book.description}
