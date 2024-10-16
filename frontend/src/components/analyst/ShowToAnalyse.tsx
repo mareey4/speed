@@ -105,7 +105,7 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                       <Link
                         href={`/analyse-book/${book._id}`}
                         className={buttonClass}
-                        style={{ width: "80%" }}
+                        style={{ width: "100%" }}
                       >
                         Add analysis
                       </Link>
