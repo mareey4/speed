@@ -56,10 +56,15 @@ function ShowToAnalyse() {
         >
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Description</th>
-              <th>Open Book</th>
+              <th style={{ width: "15%", padding: "10px" }}>Title</th>
+              <th style={{ width: "10%", padding: "10px" }}>ISBN</th>
+              <th style={{ width: "15%", padding: "10px" }}>Author</th>
+              <th style={{ width: "30%", padding: "10px" }}>
+                Description
+              </th>{" "}
+              {/* Wider column */}
+              <th style={{ width: "15%", padding: "10px" }}>Published Date</th>
+              <th style={{ width: "15%", padding: "10px" }}>Analysis</th>
             </tr>
           </thead>
           <tbody>
