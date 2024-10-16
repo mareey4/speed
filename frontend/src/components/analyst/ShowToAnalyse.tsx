@@ -30,10 +30,15 @@ function ShowToAnalyse() {
         <div className="row">
           <div className="col-md-12">
             <br />
-            <h2 className="display-4 text-center">Books List</h2>
+            <br />
+            <h2
+              className="text-center"
+              style={{ fontSize: "1.5rem", fontWeight: "bold" }}
+            >
+              Books List
+            </h2>
           </div>
           <div className="col-md-11">
-            <br />
             <br />
             <hr />
           </div>
