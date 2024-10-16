@@ -71,6 +71,11 @@ function ShowToAnalyse() {
             {books.length === 0 ? (
               <tr>
                 <td colSpan={4} className="text-center">
+                <td
+                  colSpan={6}
+                  className="text-center"
+                  style={{ padding: "10px" }}
+                >
                   There is no book record!
                 </td>
               </tr>
