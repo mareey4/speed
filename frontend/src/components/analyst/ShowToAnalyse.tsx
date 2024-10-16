@@ -45,7 +45,15 @@ function ShowToAnalyse() {
         </div>
 
         {/* Table to display the list of books */}
-        <table className="table table-hover">
+        <table
+          className="table table-hover"
+          style={{
+            tableLayout: "fixed",
+            width: "100%",
+            borderCollapse: "separate",
+            borderSpacing: "0 10px",
+          }}
+        >
           <thead>
             <tr>
               <th>Title</th>
