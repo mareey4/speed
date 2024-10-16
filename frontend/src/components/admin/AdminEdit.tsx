@@ -2,6 +2,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Book, DefaultEmptyBook } from "../Book";
 import Link from "next/link";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminEdit() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook);
@@ -36,15 +38,25 @@ function AdminEdit() {
       body: JSON.stringify(book),
     })
       .then(() => {
-        router.push(`/show-book/${id}`);
+        toast.success("New edit added successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 3000);
       })
       .catch((err) => {
         console.log("Error from AdminEdit: " + err);
+        toast.error("Failed to update book. Please try again.", {
+          position: "top-center",
+        });
       });
   };
-  console.log(book.title);
+
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
+
   return (
     <div className="AdminEdit">
       <div className="container">
@@ -58,6 +70,7 @@ function AdminEdit() {
           <div className="col-md-8 m-auto">
             <h1 className="lead text-center">Admin Edit View</h1>
           </div>
+        <ToastContainer />
         </div>
         <div className="col-md-8 m-auto">
           <form noValidate onSubmit={onSubmit}>
