@@ -11,11 +11,11 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const baseNavLinkClass = "transition p-4";
-  const inactiveNavLinkClass = "bg-blue-600 text-white hover:bg-blue-700";
-  const activeNavLinkClass = "bg-white text-blue-600";
+  const inactiveNavLinkClass = "bg-pink-500 text-white hover:bg-pink-600"; // Updated to pink
+  const activeNavLinkClass = "bg-white text-pink-500"; // Updated text color
 
   return (
-    <nav className="bg-blue-600 fixed w-full top-0 z-10 shadow-md">
+    <nav className="bg-pink-500 fixed w-full top-0 z-10 shadow-md">
       <div className="flex items-center justify-between max-w-7xl mx-auto h-16">
 
         {/* Logo */}

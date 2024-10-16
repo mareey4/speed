@@ -41,7 +41,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition"
+              className="bg-pink-500 text-white p-4 rounded-lg hover:bg-pink-600 transition"
             >
               Search
             </button>
