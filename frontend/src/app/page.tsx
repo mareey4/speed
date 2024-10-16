@@ -19,11 +19,11 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <main className="container mx-auto p-8">
-        <h1 className="text-4xl font-bold text-center">Welcome to SPEED!</h1>
+        <h1 className="text-4xl font-bold text-center">SPEED</h1>
         <p className="mt-4 text-center">
-          Your go-to searchable database for empirical software engineering evidence.
+          Discover the power of data-driven insights for software engineering.
           <br />
-          The Software Empirical Evidence Database is the best ever!
+          Empower your projects with evidence that makes a difference!
         </p>
 
         <div className="flex justify-center space-x-4 mt-8">
