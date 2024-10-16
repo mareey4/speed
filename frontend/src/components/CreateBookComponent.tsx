@@ -129,7 +129,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="Publisher of this Book"

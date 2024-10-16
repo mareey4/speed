@@ -43,6 +43,8 @@ function AdminEdit() {
       });
   };
   console.log(book.title);
+  const buttonClass =
+    "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
   return (
     <div className="AdminEdit">
       <div className="container">
