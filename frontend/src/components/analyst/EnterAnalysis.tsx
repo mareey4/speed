@@ -87,7 +87,7 @@ function EnterAnalysis() {
             </div>
             <br />
             <div className="form-group">
-              <label htmlFor="analysis">Analysis</label><br/>
+              <label htmlFor="analysis">Analysis</label>
               <textarea
                 placeholder="Enter your analysis here"
                 name="analysis"
