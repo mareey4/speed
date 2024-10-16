@@ -2,6 +2,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Book, DefaultEmptyBook } from "../Book";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EnterAnalysis() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook);
@@ -36,126 +38,192 @@ function EnterAnalysis() {
       body: JSON.stringify(book),
     })
       .then(() => {
-        router.push(`/show-book/${id}`);
+        toast.success("Analysis added successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+
+        setTimeout(() => {
+          router.push("/");
+        }, 3000);
       })
       .catch((err) => {
         console.log("Error from EnterAnalysis: " + err);
+        toast.error("Failed to update book. Please try again.", {
+          position: "top-center",
+        });
       });
   };
-  console.log(book.title);
+
+  const buttonClass =
+    "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
+
   return (
-    <div className="EnterAnalysis">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <br />
-            <Link href="/" className="btn btn-outline-warning float-left">
-              Show Book List
-            </Link>
-          </div>
-          <div className="col-md-8 m-auto">
-            <h1 className="lead text-center">Enter Analysis</h1>
-          </div>
+    <div
+      className="EnterAnalysis"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+        padding: "20px",
+      }}
+    >
+      <div
+        className="form-container"
+        style={{
+          width: "100%",
+          maxWidth: "600px",
+          padding: "40px",
+          borderRadius: "10px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <ToastContainer />
+
+        <h2
+          className="text-center"
+          style={{
+            fontSize: "2rem",
+            fontWeight: "bold",
+            marginBottom: "20px",
+          }}
+        >
+          Enter Analysis
+        </h2>
+
+        <div className="text-center mb-4">
+          <Link
+            href="/"
+            className={buttonClass}
+            style={{
+              width: "fit-content",
+              margin: "0 auto",
+              marginBottom: "20px",
+            }}
+          >
+            Show Book List
+          </Link>
         </div>
-        <div className="col-md-8 m-auto">
-          <form noValidate onSubmit={onSubmit}>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                placeholder="Title of the Book"
-                name="title"
-                className="form-control"
-                value={book.title}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="isbn">ISBN</label>
-              <input
-                type="text"
-                placeholder="ISBN"
-                name="isbn"
-                className="form-control"
-                value={book.isbn}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="author">Author</label>
-              <input
-                type="text"
-                placeholder="Author"
-                name="author"
-                className="form-control"
-                value={book.author}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <textarea
-                placeholder="Description of the Book"
-                name="description"
-                className="form-control"
-                value={book.description}
-                onChange={textAreaOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="published_date">Published Date</label>
-              <input
-                type="text"
-                placeholder="Published Date"
-                name="published_date"
-                className="form-control"
-                value={book.published_date?.toString()}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="publisher">Publisher</label>
-              <input
-                type="text"
-                placeholder="Publisher of the Book"
-                name="publisher"
-                className="form-control"
-                value={book.publisher}
-                onChange={inputOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <label htmlFor="analysis">Analysis</label>
-              <textarea
-                placeholder="Enter your analysis here"
-                name="analysis"
-                className="form-control"
-                value={book.analysis || ""}
-                onChange={textAreaOnChange}
-                style={{ color: "black" }}
-              />
-            </div>
-            <br />
-            <button
-              type="submit"
-              className="btn btn-outline-info btn-lg btn-block"
+
+        <form
+          noValidate
+          onSubmit={onSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}
+        >
+          {[
+            { label: "Title", name: "title", value: book.title },
+            { label: "ISBN", name: "isbn", value: book.isbn },
+            { label: "Author", name: "author", value: book.author },
+            {
+              label: "Published Date",
+              name: "published_date",
+              value: book.published_date?.toString(),
+            },
+            { label: "Publisher", name: "publisher", value: book.publisher },
+          ].map((field) => (
+            <div
+              className="form-group"
+              key={field.name}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 2fr",
+                alignItems: "center",
+                gap: "10px",
+              }}
             >
-              Update Book
-            </button>
-          </form>
-        </div>
+              <label htmlFor={field.name} style={{ fontWeight: "bold" }}>
+                {field.label}
+              </label>
+              <input
+                type="text"
+                name={field.name}
+                placeholder={field.label}
+                value={field.value}
+                className="form-control"
+                onChange={inputOnChange}
+                style={{
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  color: "black",
+                }}
+              />
+            </div>
+          ))}
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="description" style={{ fontWeight: "bold" }}>
+              Description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Description of the Book"
+              value={book.description}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="analysis" style={{ fontWeight: "bold" }}>
+              Analysis
+            </label>
+            <textarea
+              name="analysis"
+              placeholder="Enter your analysis here"
+              value={book.analysis || ""}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={buttonClass}
+            style={{
+              margin: "0 auto",
+              marginBottom: "20px",
+            }}
+          >
+            Update Book
+          </button>
+        </form>
       </div>
     </div>
   );
