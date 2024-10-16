@@ -70,7 +70,6 @@ function ShowToAnalyse() {
           <tbody>
             {books.length === 0 ? (
               <tr>
-                <td colSpan={4} className="text-center">
                 <td
                   colSpan={6}
                   className="text-center"
