@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import ShowToAnalyse from '@/components/analyst/ShowToAnalyse';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import ShowToAnalyse from "@/components/analyst/ShowToAnalyse";
 
 export default function Home() {
-
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +27,6 @@ export default function Home() {
         </p>
 
         <div className="flex justify-center space-x-4 mt-8">
-
           {/* Search Section */}
           <form onSubmit={handleSearch} className="flex space-x-2">
             <input
@@ -37,7 +35,13 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="p-4 w-64 rounded-lg border border-gray-300"
-              style={{ color: 'black', backgroundColor: 'white', borderColor: 'white', width: '100%', borderRadius: '8px' }}
+              style={{
+                color: "black",
+                backgroundColor: "white",
+                borderColor: "white",
+                width: "100%",
+                borderRadius: "8px",
+              }}
             />
             <button
               type="submit"
@@ -47,7 +51,7 @@ export default function Home() {
             </button>
           </form>
         </div>
-          <ShowToAnalyse />
+        <ShowToAnalyse />
       </main>
     </div>
   );
