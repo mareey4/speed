@@ -2,6 +2,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Book, DefaultEmptyBook } from "../Book";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EnterAnalysis() {
   const [book, setBook] = useState<Book>(DefaultEmptyBook);
@@ -36,10 +38,20 @@ function EnterAnalysis() {
       body: JSON.stringify(book),
     })
       .then(() => {
-        router.push(`/show-book/${id}`);
+        toast.success("Analysis added successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+
+        setTimeout(() => {
+          router.push("/");
+        }, 3000);
       })
       .catch((err) => {
         console.log("Error from EnterAnalysis: " + err);
+        toast.error("Failed to update book. Please try again.", {
+          position: "top-center",
+        });
       });
   };
 
@@ -68,6 +80,8 @@ function EnterAnalysis() {
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
+        <ToastContainer />
+
         <h2
           className="text-center"
           style={{
