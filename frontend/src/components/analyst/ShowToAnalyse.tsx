@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Book } from "../Book";
 
-function ShowToAnalyse() {
+interface ShowToAnalyseProps {
+  filterByAnalysis?: boolean;
+}
+
+function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
@@ -14,22 +18,26 @@ function ShowToAnalyse() {
         if (!res.ok) {
           throw new Error("Failed to fetch books");
         }
-        const books = await res.json();
-        setBooks(books);
+        const fetchedBooks = await res.json();
+
+        const filteredBooks = filterByAnalysis
+          ? fetchedBooks.filter((book: Book) => book.analysis)
+          : fetchedBooks;
+
+        setBooks(filteredBooks);
       } catch (err) {
         console.log("Error from ShowToAnalyse: " + err);
       }
     };
 
     fetchBooks();
-  }, []);
+  }, [filterByAnalysis]);
 
   return (
     <div className="ShowToAnalyse">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <br />
             <br />
             <h2
               className="text-center"
@@ -83,8 +91,7 @@ function ShowToAnalyse() {
                   <td style={{ padding: "10px" }}>{book.author}</td>
                   <td style={{ padding: "10px", wordWrap: "break-word" }}>
                     {book.description}
-                  </td>{" "}
-                  {/* Handles long text */}
+                  </td>
                   <td style={{ padding: "10px" }}>{book.published_date}</td>
                   <td style={{ padding: "10px" }}>
                     {book.analysis ? (

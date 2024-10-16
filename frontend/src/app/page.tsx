@@ -51,7 +51,8 @@ export default function Home() {
             </button>
           </form>
         </div>
-        <ShowToAnalyse />
+        {/* Only show books with analysis on the home page */}
+        <ShowToAnalyse filterByAnalysis={true} />
       </main>
     </div>
   );
