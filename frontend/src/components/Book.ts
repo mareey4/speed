@@ -14,7 +14,8 @@ export type Book = {
   published_date?: Date;
   publisher?: string;
   updated_date?: Date;
-  status?: BookStatus; 
+  status?: BookStatus;
+  analysis?: string; 
 };
 
 export const DefaultEmptyBook: Book = {
@@ -27,4 +28,5 @@ export const DefaultEmptyBook: Book = {
   publisher: '',
   updated_date: undefined,
   status: BookStatus.Submitted,
+  analysis: ''
 };

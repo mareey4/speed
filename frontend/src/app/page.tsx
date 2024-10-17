@@ -3,12 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Book, BookStatus } from '../components/Book';
-
 import Link from 'next/link';
 
 export default function Home() {
   const [acceptedArticles, setAcceptedArticles] = useState<Book[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function Home() {
       }
     };
     
-
     fetchAcceptedArticles();
   }, []);
 
@@ -51,7 +49,6 @@ export default function Home() {
           Empower your projects with evidence that makes a difference!
         </p>
 
-        {/* Button Section */}
         <div className="flex justify-center space-x-4 mt-8">
           <Link href="/admin" className={buttonClass}>Admin</Link>
           <Link href="/user" className={buttonClass}>User</Link>
@@ -68,17 +65,11 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="p-4 w-64 rounded-lg border border-gray-300"
-              style={{
-                color: "black",
-                backgroundColor: "white",
-                borderColor: "white",
-                width: "100%",
-                borderRadius: "8px",
-              }}
+              style={{ color: 'black', backgroundColor: 'white', borderColor: 'white', width: '100%', borderRadius: '8px' }}
             />
             <button
               type="submit"
-              className="bg-pink-500 text-white p-4 rounded-lg hover:bg-pink-600 transition"
+              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition"
             >
               Search
             </button>
@@ -91,7 +82,7 @@ export default function Home() {
             <p className="text-center">No accepted articles available.</p>
           ) : (
             <ul className="list-disc list-inside mx-auto max-w-lg">
-              {acceptedArticles.map((article: Book) => (  // Add type annotation here
+              {acceptedArticles.map((article: Book) => (
                 <li key={article._id} className="mt-2">
                   <strong>{article.title}</strong> by {article.author}
                 </li>

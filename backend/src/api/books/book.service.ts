@@ -36,4 +36,12 @@ export class BookService {
       .findByIdAndUpdate(id, { status }, { new: true })
       .exec();
   }
+
+  async search(query: string): Promise<Book[]> {
+    return this.bookModel
+      .find({
+        title: { $regex: query, $options: 'i' },
+      })
+      .exec();
+  }
 }

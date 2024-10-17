@@ -29,6 +29,10 @@ export class Book {
 
   @Prop({ type: String, enum: Object.values(BookStatus), default: BookStatus.Submitted }) 
   status: BookStatus;
+  
+  @Prop({default: ''})
+  analysis: string;
+
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

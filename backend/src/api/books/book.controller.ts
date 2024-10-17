@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { CreateBookDto, BookStatus } from './create-book.dto';
@@ -16,7 +17,10 @@ export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @Get()
-  async findAll() {
+  async findAll(@Query('query') query: string) {
+    if (query) {
+      return this.bookService.search(query);
+    }
     return this.bookService.findAll();
   }
 
