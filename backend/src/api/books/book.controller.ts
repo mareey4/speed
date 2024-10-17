@@ -35,7 +35,6 @@ export class BookController {
     return this.bookService.update(id, createBookDto);
   }
 
-  // Add PATCH method for updating the status
   @Patch(':id/status')
   async updateStatus(@Param('id') id: string, @Body() statusUpdate: { status: BookStatus }) {
     return this.bookService.updateStatus(id, statusUpdate.status);

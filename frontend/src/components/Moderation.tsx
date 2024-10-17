@@ -38,22 +38,20 @@ function Moderation() {
         },
         body: JSON.stringify({ status }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to update book status');
       }
-  
+
       const updatedBook = await response.json();
-      console.log('Book status updated:', updatedBook);
       setBooks((prevBooks) =>
         prevBooks.map((book) => (book._id === updatedBook._id ? updatedBook : book))
       );
-  
+
       // Show success toast
       toast.success(`Book ${status === BookStatus.Accepted ? 'accepted' : 'rejected'} successfully!`);
     } catch (error) {
       console.error('Error updating status:', error);
-      // Use type assertion to specify that error is an instance of Error
       const err = error as Error;
       toast.error('Error updating status: ' + err.message);
     }
@@ -158,19 +156,19 @@ function Moderation() {
         </table>
 
         {selectedBook && (
-  <>
-    <div className="backdrop" onClick={handleCloseDetails}></div>
-    <div className="book-details">
-      <button onClick={handleCloseDetails} className="btn-close" aria-label="Close">x</button>
-      <h1>{selectedBook.title}</h1>
-      <p><strong>Author:</strong> {selectedBook.author}</p>
-      <p><strong>Description:</strong> {selectedBook.description}</p>
-      <p><strong>ISBN:</strong> {selectedBook.isbn}</p>
-      <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
-      <p><strong>Status:</strong> {selectedBook.status}</p>
-    </div>
-  </>
-)}
+          <>
+            <div className="backdrop" onClick={handleCloseDetails}></div>
+            <div className="book-details">
+              <button onClick={handleCloseDetails} className="btn-close" aria-label="Close">x</button>
+              <h1>{selectedBook.title}</h1>
+              <p><strong>Author:</strong> {selectedBook.author}</p>
+              <p><strong>Description:</strong> {selectedBook.description}</p>
+              <p><strong>ISBN:</strong> {selectedBook.isbn}</p>
+              <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
+              <p><strong>Status:</strong> {selectedBook.status}</p>
+            </div>
+          </>
+        )}
       </div>
       <ToastContainer />
     </div>

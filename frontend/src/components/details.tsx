@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Book } from './Book'; // Adjust the import path if necessary
+import { Book } from './Book';
 
 const Details = () => {
   const router = useRouter();
-  const { id } = router.query; // Get the book ID from the URL
+  const { id } = router.query;
   const [book, setBook] = useState<Book | null>(null);
 
   useEffect(() => {
