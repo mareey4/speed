@@ -9,7 +9,11 @@ const CreateBookComponent = () => {
   const navigate = useRouter();
   const [book, setBook] = useState<Book>({
     ...DefaultEmptyBook,
-    analysis: ""
+    analysis: "",
+    se_practice: "se",
+    claim: "",
+    result: "",
+    research_type: ""
   });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +30,12 @@ const CreateBookComponent = () => {
         body: JSON.stringify(book),
       });
 
+      console.log("JSON: "+JSON.stringify(book))
+
       if (response.ok) {
+        console.log("title: " + book.title)
+        console.log(book)
+        console.log("se_prac: " + book.se_practice)
         setBook(DefaultEmptyBook);
         toast.success('Book submitted successfully!');
         setTimeout(() => {
@@ -144,6 +153,10 @@ const CreateBookComponent = () => {
 
           {/* Invisible field for analysis */}
           <input type="hidden" name="analysis" value={book.analysis} />
+          <input type="hidden" name="se_practice" value={book.se_practice} />
+          <input type="hidden" name="claim" value={book.claim} />
+          <input type="hidden" name="result" value={book.result} />
+          <input type="hidden" name="research_type" value={book.research_type} />
 
           <button
             type="submit"

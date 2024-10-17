@@ -146,6 +146,10 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                       </Link>
                     )}
                   </td>
+                  <td style={{ padding: "10px" }}>{book.se_practice}</td>
+                  <td style={{ padding: "10px" }}>{book.claim}</td>
+                  <td style={{ padding: "10px" }}>{book.result}</td>
+                  <td style={{ padding: "10px" }}>{book.research_type}</td>
                 </tr>
               ))
             )}
