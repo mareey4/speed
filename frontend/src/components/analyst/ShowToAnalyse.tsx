@@ -37,9 +37,9 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
 
-  const handleOpenModal = (analysis: string) => {
-    setModalContent(analysis);
-  };
+    const handleOpenModal = (analysis: string) => {
+      setModalContent(analysis);
+    };
 
   const handleCloseModal = () => {
     setModalContent(null);
@@ -181,6 +181,16 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
             >
               &times;
             </span>
+            <div 
+              className="modal-header" 
+              style={{ 
+                fontSize: "1.5rem", 
+                fontWeight: "bold", 
+                paddingTop:"10px",
+                paddingBottom:"10px"
+              }}>
+              <h2>Analysis</h2>
+            </div>
             <div className="modal-body">
               <p>{modalContent}</p>
             </div>
