@@ -83,6 +83,10 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
               <th style={{ width: "15%", padding: "10px" }}>Published Date</th>
               <th style={{ width: "15%", padding: "10px" }}>Publisher</th>
               <th style={{ width: "15%", padding: "10px" }}>Analysis</th>
+              <th style={{ width: "15%", padding: "10px" }}>SE Practice</th>
+              <th style={{ width: "15%", padding: "10px" }}>Claim</th>
+              <th style={{ width: "15%", padding: "10px" }}>Result</th>
+              <th style={{ width: "15%", padding: "10px" }}>Research Type</th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +109,13 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                   <td style={{ padding: "10px", wordWrap: "break-word" }}>
                     {book.description}
                   </td>
-                  <td style={{ padding: "10px" }}>{book.published_date}</td>
+                  <td style={{ padding: "10px" }}>
+                    {new Date(book.published_date).toLocaleDateString("en-NZ", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                    })}
+                  </td>
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
                     {book.analysis ? (
