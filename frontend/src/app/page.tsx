@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Book, BookStatus } from '../components/Book';
 import Link from 'next/link';
+import ShowToAnalyse from "@/components/analyst/ShowToAnalyse";
 
 export default function Home() {
   const [acceptedArticles, setAcceptedArticles] = useState<Book[]>([]);
@@ -18,7 +19,7 @@ export default function Home() {
           throw new Error("Failed to fetch articles");
         }
         const articles: Book[] = await res.json();
-        
+
         // Filter for accepted articles
         const filteredArticles = articles.filter((article) => article.status === BookStatus.Accepted);
         setAcceptedArticles(filteredArticles);
@@ -26,7 +27,7 @@ export default function Home() {
         console.error("Error fetching accepted articles:", error);
       }
     };
-    
+
     fetchAcceptedArticles();
   }, []);
 
@@ -65,11 +66,17 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="p-4 w-64 rounded-lg border border-gray-300"
-              style={{ color: 'black', backgroundColor: 'white', borderColor: 'white', width: '100%', borderRadius: '8px' }}
+              style={{
+                color: "black",
+                backgroundColor: "white",
+                borderColor: "white",
+                width: "100%",
+                borderRadius: "8px",
+              }}
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 transition"
+              className="bg-pink-500 text-white p-4 rounded-lg hover:bg-pink-600 transition"
             >
               Search
             </button>
@@ -90,6 +97,9 @@ export default function Home() {
             </ul>
           )}
         </div>
+
+        {/* Only show books with analysis on the home page */}
+        <ShowToAnalyse filterByAnalysis={true} />
       </main>
     </div>
   );
