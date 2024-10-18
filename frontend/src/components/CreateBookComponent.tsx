@@ -7,14 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateBookComponent = () => {
   const navigate = useRouter();
-  const [book, setBook] = useState<Book>({
-    ...DefaultEmptyBook,
-    analysis: "",
-    se_practice: "se",
-    claim: "",
-    result: "",
-    research_type: ""
-  });
+  const [book, setBook] = useState<Book>(DefaultEmptyBook);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setBook({ ...book, [event.target.name]: event.target.value });
@@ -30,12 +23,7 @@ const CreateBookComponent = () => {
         body: JSON.stringify(book),
       });
 
-      console.log("JSON: "+JSON.stringify(book))
-
       if (response.ok) {
-        console.log("title: " + book.title)
-        console.log(book)
-        console.log("se_prac: " + book.se_practice)
         setBook(DefaultEmptyBook);
         toast.success('Book submitted successfully!');
         setTimeout(() => {
