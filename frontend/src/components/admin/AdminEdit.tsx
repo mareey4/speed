@@ -125,6 +125,11 @@ function AdminEdit() {
               value: book.published_date?.toString(),
             },
             { label: "Publisher", name: "publisher", value: book.publisher },
+            { label: "Analysis", name: "analysis", value: book.analysis },
+            { label: "SE Practice", name: "se_practice", value: book.se_practice },
+            { label: "Claim", name: "claim", value: book.claim },
+            { label: "Result", name: "result", value: book.result },
+            { label: "Research Type", name: "research_type", value: book.research_type },
           ].map((field) => (
             <div
               className="form-group"
