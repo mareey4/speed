@@ -34,7 +34,7 @@ function ShowToAnalyse({
 
       setBooks(
         filterByAnalysis
-          ? filteredBooks.filter((b) => b.analysis)
+          ? filteredBooks.filter((b: Book) => b.analysis)
           : filteredBooks
       );
     } catch (err) {
