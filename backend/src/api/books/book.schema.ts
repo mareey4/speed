@@ -26,21 +26,23 @@ export class Book {
   @Prop({ type: Date, default: Date.now })
   updated_date: Date;
 
-  @Prop({default: ''})
+  @Prop({ default: '' })
   analysis: string;
 
-  @Prop({default: ''})
+  @Prop({ default: '' })
   se_practice: string;
 
-  @Prop({default: ''})
+  @Prop({ default: '' })
   claim: string;
 
-  @Prop({default: ''})
+  @Prop({ default: '' })
   result: string;
 
-  @Prop({default: ''})
+  @Prop({ default: '' })
   research_type: string;
 
+  @Prop({ type: String, default: 'Pending' })
+  moderation_status: 'Pending' | 'Approved' | 'Rejected';
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

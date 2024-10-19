@@ -1,39 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Book } from "../Book";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ShowToAnalyseProps {
   filterByAnalysis?: boolean;
+  isModerator?: boolean;
 }
 
-function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
+function ShowToAnalyse({
+  filterByAnalysis = false,
+  isModerator = false,
+}: ShowToAnalyseProps) {
   const [books, setBooks] = useState<Book[]>([]);
   const [modalContent, setModalContent] = useState<string | null>(null);
   const [modalTitle, setModalTitle] = useState<string | null>(null);
 
+  const fetchBooks = useCallback(async () => {
+    try {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_URL + "/api/books"
+      );
+      if (!res.ok) throw new Error("Failed to fetch books");
+
+      const fetchedBooks = await res.json();
+
+      const filteredBooks = isModerator
+        ? fetchedBooks
+        : fetchedBooks.filter(
+            (book: Book) => book.moderation_status === "Approved"
+          );
+
+      setBooks(
+        filterByAnalysis
+          ? filteredBooks.filter((b: Book) => b.analysis)
+          : filteredBooks
+      );
+    } catch (err) {
+      console.log("Error fetching books:", err);
+    }
+  }, [filterByAnalysis, isModerator]);
+
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const res = await fetch(
-          process.env.NEXT_PUBLIC_BACKEND_URL + "/api/books"
-        );
-        if (!res.ok) {
-          throw new Error("Failed to fetch books");
-        }
-        const fetchedBooks = await res.json();
-
-        const filteredBooks = filterByAnalysis
-          ? fetchedBooks.filter((book: Book) => book.analysis)
-          : fetchedBooks;
-
-        setBooks(filteredBooks);
-      } catch (err) {
-        console.log("Error from ShowToAnalyse: " + err);
-      }
-    };
-
     fetchBooks();
-  }, [filterByAnalysis]);
+  }, [fetchBooks]);
+
+  const updateModerationStatus = async (
+    id: string,
+    status: "Approved" | "Rejected"
+  ) => {
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${id}/moderate`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ moderation_status: status }),
+        }
+      );
+
+      toast.success(`Book has been ${status.toLowerCase()}!`);
+
+      await fetchBooks();
+    } catch (err) {
+      console.log("Error updating moderation status:", err);
+      toast.error("Failed to update moderation status.");
+    }
+  };
 
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
@@ -90,6 +124,7 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
               <th style={{ width: "15%", padding: "10px" }}>Claim</th>
               <th style={{ width: "15%", padding: "10px" }}>Result</th>
               <th style={{ width: "15%", padding: "10px" }}>Research Type</th>
+              <th style={{ width: "15%", padding: "10px" }}>Moderation</th>
             </tr>
           </thead>
           <tbody>
@@ -185,6 +220,30 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                   <td style={{ padding: "10px" }}>{book.claim}</td>
                   <td style={{ padding: "10px" }}>{book.result}</td>
                   <td style={{ padding: "10px" }}>{book.research_type}</td>
+                  <td>
+                    {isModerator && book.moderation_status === "Pending" ? (
+                      <div className="flex space-x-4">
+                        <button
+                          className={buttonClass}
+                          onClick={() =>
+                            updateModerationStatus(book._id!, "Approved")
+                          }
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className={buttonClass}
+                          onClick={() =>
+                            updateModerationStatus(book._id!, "Rejected")
+                          }
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    ) : (
+                      <div>{book.moderation_status}</div>
+                    )}
+                  </td>
                 </tr>
               ))
             )}
@@ -248,6 +307,7 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

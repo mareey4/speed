@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  Patch,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { CreateBookDto } from './create-book.dto';
@@ -41,5 +42,13 @@ export class BookController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return this.bookService.delete(id);
+  }
+
+  @Patch(':id/moderate')
+  async moderateBook(
+    @Param('id') id: string,
+    @Body('moderation_status') moderationStatus: string,
+  ) {
+    return this.bookService.updateModerationStatus(id, moderationStatus);
   }
 }
