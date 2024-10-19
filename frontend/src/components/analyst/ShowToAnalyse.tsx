@@ -161,11 +161,7 @@ function ShowToAnalyse({
                     ) : null}
                   </td>
                   <td style={{ padding: "10px" }}>
-                    {new Date(book.published_date).toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
+                    {new Date(book.published_date).toLocaleDateString()}
                   </td>
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
