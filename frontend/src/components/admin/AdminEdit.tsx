@@ -25,10 +25,6 @@ function AdminEdit() {
     setBook({ ...book, [event.target.name]: event.target.value });
   };
 
-  const textAreaOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setBook({ ...book, [event.target.name]: event.target.value });
-  };
-
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
