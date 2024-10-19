@@ -83,6 +83,8 @@ const AdminView = () => {
               <th style={{ width: "15%", padding: "10px" }}>Claim</th>
               <th style={{ width: "15%", padding: "10px" }}>Result</th>
               <th style={{ width: "15%", padding: "10px" }}>Research Type</th>
+              <th style={{ width: "15%", padding: "10px" }}>Analysis</th>
+
               <th style={{ width: "15%", padding: "10px" }}>Edit</th>
             </tr>
           </thead>
