@@ -181,7 +181,6 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
         </table>
       </div>
 
-      {/* Modal to display the full analysis */}
       {modalContent && (
         <div
           className="modal"
