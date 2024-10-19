@@ -127,8 +127,11 @@ const AdminView = () => {
                         {book.analysis.length > 100 && (
                           <button
                             className="btn btn-link"
-                            onClick={() =>
-                              handleOpenModal(book.analysis, "Analysis")
+                             onClick={() =>
+                              handleOpenModal(
+                                book.analysis || "No description available",
+                                "Analysis"
+                              )
                             }
                             style={{ color: "dodgerblue" }}
                           >
