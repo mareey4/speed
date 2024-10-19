@@ -84,7 +84,11 @@ const AdminView = () => {
                   <td style={{ padding: "10px", wordWrap: "break-word" }}>
                     {book.description}
                   </td>
-                  <td style={{ padding: "10px" }}>{book.published_date}</td>
+                   <td style={{ padding: "10px" }}>
+                    {book.published_date
+                      ? new Date(book.published_date).toLocaleDateString()
+                      : "N/A"}
+                  </td>
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
                     <Link

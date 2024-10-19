@@ -1,6 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-const analysisSchema = new mongoose.Schema({
+interface IAnalysis extends Document {
+  analysisField: string;
+  createdAt: Date;
+}
+
+const analysisSchema: Schema<IAnalysis> = new Schema({
   analysisField: {
     type: String,
     required: true
@@ -11,4 +16,6 @@ const analysisSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Analysis', analysisSchema);
+const Analysis: Model<IAnalysis> = mongoose.model<IAnalysis>('Analysis', analysisSchema);
+
+export default Analysis;

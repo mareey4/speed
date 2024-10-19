@@ -117,11 +117,14 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                             ? `${book.description.slice(0, 100)}...`
                             : book.description}
                         </div>
-                        {book.description.length > 100 && (
+                        {book.description && book.description.length > 100 && (
                           <button
                             className="btn btn-link"
                             onClick={() =>
-                              handleOpenModal(book.description, "Description")
+                              handleOpenModal(
+                                book.description || "No description available",
+                                "Description"
+                              )
                             }
                             style={{ color: "dodgerblue" }}
                           >
@@ -132,11 +135,16 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                     ) : null}
                   </td>
                   <td style={{ padding: "10px" }}>
-                    {new Date(book.published_date).toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
+                    {book.published_date
+                      ? new Date(book.published_date).toLocaleDateString(
+                          "en-NZ",
+                          {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                          }
+                        )
+                      : "N/A"}
                   </td>
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>
@@ -152,7 +160,10 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                           <button
                             className="btn btn-link"
                             onClick={() =>
-                              handleOpenModal(book.analysis, "Analysis")
+                              handleOpenModal(
+                                book.analysis || "No description available",
+                                "Analysis"
+                              )
                             }
                             style={{ color: "dodgerblue" }}
                           >
