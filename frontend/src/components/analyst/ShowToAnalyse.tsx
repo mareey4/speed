@@ -9,6 +9,7 @@ interface ShowToAnalyseProps {
 function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
   const [books, setBooks] = useState<Book[]>([]);
   const [modalContent, setModalContent] = useState<string | null>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -37,12 +38,14 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
 
-    const handleOpenModal = (analysis: string) => {
-      setModalContent(analysis);
-    };
+  const handleOpenModal = (content: string, title: string) => {
+    setModalContent(content);
+    setModalTitle(title);
+  };
 
   const handleCloseModal = () => {
     setModalContent(null);
+    setModalTitle(null);
   };
 
   return (
@@ -107,7 +110,26 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                   <td style={{ padding: "10px" }}>{book.isbn}</td>
                   <td style={{ padding: "10px" }}>{book.author}</td>
                   <td style={{ padding: "10px", wordWrap: "break-word" }}>
-                    {book.description}
+                    {book.description ? (
+                      <>
+                        <div className="text-success">
+                          {book.description.length > 100
+                            ? `${book.description.slice(0, 100)}...`
+                            : book.description}
+                        </div>
+                        {book.description.length > 100 && (
+                          <button
+                            className="btn btn-link"
+                            onClick={() =>
+                              handleOpenModal(book.description, "Description")
+                            }
+                            style={{ color: "dodgerblue" }}
+                          >
+                            Read more
+                          </button>
+                        )}
+                      </>
+                    ) : null}
                   </td>
                   <td style={{ padding: "10px" }}>
                     {new Date(book.published_date).toLocaleDateString("en-NZ", {
@@ -128,9 +150,11 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
                         </div>
                         {book.analysis.length > 100 && (
                           <button
-                            className="btn btn-primary mt-2"
-                            onClick={() => handleOpenModal(book.analysis)}
-                            style={{color:"dodgerblue"}}
+                            className="btn btn-link"
+                            onClick={() =>
+                              handleOpenModal(book.analysis, "Analysis")
+                            }
+                            style={{ color: "dodgerblue" }}
                           >
                             Read more
                           </button>
@@ -159,8 +183,9 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
 
       {/* Modal to display the full analysis */}
       {modalContent && (
-        <div className="modal" 
-            style={{ 
+        <div
+          className="modal"
+          style={{
             display: "flex",
             position: "fixed",
             zIndex: 1,
@@ -170,44 +195,45 @@ function ShowToAnalyse({ filterByAnalysis = false }: ShowToAnalyseProps) {
             height: "100%",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             justifyContent: "center",
-            alignItems: "center"
-          }}>
-          <div className="modal-content" 
-            style={{  
+            alignItems: "center",
+          }}
+        >
+          <div
+            className="modal-content"
+            style={{
               backgroundColor: "white",
               color: "black",
               padding: "20px",
               borderRadius: "5px",
               maxWidth: "600px",
-              width: "90%"
-            }}>
+              width: "90%",
+            }}
+          >
             <span
               className="close"
-              style={{  
+              style={{
                 position: "absolute",
                 right: "20px",
                 top: "50px",
                 fontSize: "3.5rem",
                 cursor: "pointer",
-                color:"red"
+                color: "red",
               }}
               onClick={handleCloseModal}
             >
               &times;
             </span>
-            <div 
-              className="modal-header" 
-              style={{ 
-                fontSize: "1.5rem", 
-                fontWeight: "bold", 
-                paddingTop:"10px",
-                paddingBottom:"10px"
-              }}>
-              <h2>Analysis</h2>
-            </div>
-            <div className="modal-body">
-              <p>{modalContent}</p>
-            </div>
+            <h2
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+              }}
+            >
+              {modalTitle}
+            </h2>
+            <p>{modalContent}</p>
           </div>
         </div>
       )}
