@@ -65,7 +65,7 @@ const AdminView = () => {
         <table
           className="table table-hover"
           style={{
-            tableLayout: "fixed",
+            tableLayout: "auto",
             width: "100%",
             borderCollapse: "separate",
             borderSpacing: "0 10px",
