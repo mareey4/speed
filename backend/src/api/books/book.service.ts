@@ -9,7 +9,9 @@ export class BookService {
   constructor(@InjectModel(Book.name) private bookModel: Model<BookDocument>) {}
 
   async findAll(): Promise<Book[]> {
-    return this.bookModel.find().exec();
+    return this.bookModel
+      .find({ moderation_status: { $nin: ['Pending', 'Rejected'] } })
+      .exec();
   }
 
   async findOne(id: string): Promise<Book> {
@@ -17,7 +19,11 @@ export class BookService {
   }
 
   async create(createBookDto: CreateBookDto): Promise<Book> {
-    return new this.bookModel(createBookDto).save();
+    const newBook = new this.bookModel({
+      ...createBookDto,
+      moderation_status: 'Pending',
+    });
+    return newBook.save();
   }
 
   async update(id: string, createBookDto: CreateBookDto): Promise<Book> {
@@ -36,5 +42,24 @@ export class BookService {
         title: { $regex: query, $options: 'i' },
       })
       .exec();
+  }
+
+  async updateModerationStatus(
+    id: string,
+    moderationStatus: string,
+  ): Promise<Book> {
+    const updatedBook = await this.bookModel
+      .findByIdAndUpdate(
+        id,
+        { moderation_status: moderationStatus },
+        { new: true },
+      )
+      .exec();
+
+    if (!updatedBook) {
+      throw new NotFoundException(`Book with ID ${id} not found`);
+    }
+
+    return updatedBook;
   }
 }
