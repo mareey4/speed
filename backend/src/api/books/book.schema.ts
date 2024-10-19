@@ -41,6 +41,8 @@ export class Book {
   @Prop({ default: '' })
   research_type: string;
 
+  @Prop({ type: String, default: 'Pending' })
+  moderation_status: 'Pending' | 'Approved' | 'Rejected';
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

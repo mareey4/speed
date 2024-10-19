@@ -12,6 +12,7 @@ export type Book = {
     claim?: string;
     result?: string;
     research_type?: string;
+    moderation_status: "Pending" | "Approved" | "Rejected";
   };
 
   export const DefaultEmptyBook: Book = {
@@ -27,5 +28,6 @@ export type Book = {
     se_practice: '',
     claim: '',
     result: '',
-    research_type: ''
+    research_type: '',
+    moderation_status: 'Pending'
   }
