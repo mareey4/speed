@@ -29,6 +29,18 @@ export class Book {
   @Prop({default: ''})
   analysis: string;
 
+  @Prop({default: ''})
+  se_practice: string;
+
+  @Prop({default: ''})
+  claim: string;
+
+  @Prop({default: ''})
+  result: string;
+
+  @Prop({default: ''})
+  research_type: string;
+
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book);

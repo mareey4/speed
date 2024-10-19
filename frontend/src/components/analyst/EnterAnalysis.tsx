@@ -213,6 +213,133 @@ function EnterAnalysis() {
             />
           </div>
 
+          {/** */}
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="se_practice" style={{ fontWeight: "bold" }}>
+              se_practice
+            </label>
+            <textarea
+              name="se_practice"
+              placeholder="Enter your se_practice here"
+              value={book.se_practice || ""}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="claim" style={{ fontWeight: "bold" }}>
+              claim
+            </label>
+            <textarea
+              name="claim"
+              placeholder="Enter your claim here"
+              value={book.claim || ""}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="result" style={{ fontWeight: "bold" }}>
+              result
+            </label>
+            <textarea
+              name="result"
+              placeholder="Enter your result here"
+              value={book.result || ""}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <label htmlFor="research_type" style={{ fontWeight: "bold" }}>
+              research_type
+            </label>
+            <textarea
+              name="research_type"
+              placeholder="Enter your research_type here"
+              value={book.research_type || ""}
+              className="form-control"
+              onChange={textAreaOnChange}
+              rows={3}
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                color: "black",
+              }}
+            />
+          </div>
+
+          <div
+            className="form-group"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 2fr",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+          </div>
+
+
+          {/** */}
           <button
             type="submit"
             className={buttonClass}

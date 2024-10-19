@@ -7,4 +7,8 @@ export class CreateBookDto {
   publisher: string;
   updated_date: Date;
   analysis: string;
+  se_practice: string;
+  claim: string;
+  result: string;
+  research_type: string;
 }

@@ -8,6 +8,10 @@ export type Book = {
     publisher?: string;
     updated_date?: Date;
     analysis?: string;
+    se_practice?: string;
+    claim?: string;
+    result?: string;
+    research_type?: string;
   };
 
   export const DefaultEmptyBook: Book = {
@@ -19,5 +23,9 @@ export type Book = {
     published_date: undefined,
     publisher: '',
     updated_date: undefined,
-    analysis: ''
+    analysis: '',
+    se_practice: '',
+    claim: '',
+    result: '',
+    research_type: ''
   }

@@ -7,10 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateBookComponent = () => {
   const navigate = useRouter();
-  const [book, setBook] = useState<Book>({
-    ...DefaultEmptyBook,
-    analysis: ""
-  });
+  const [book, setBook] = useState<Book>(DefaultEmptyBook);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setBook({ ...book, [event.target.name]: event.target.value });
@@ -129,7 +126,7 @@ const CreateBookComponent = () => {
             />
           </div>
           <br />
-          <div className="form-group">
+          <div className="form-group" style={{ width: '100%', maxWidth: '400px', marginBottom: '10px' }}>
             <input
               type="text"
               placeholder="Publisher of this Book"
@@ -144,6 +141,10 @@ const CreateBookComponent = () => {
 
           {/* Invisible field for analysis */}
           <input type="hidden" name="analysis" value={book.analysis} />
+          <input type="hidden" name="se_practice" value={book.se_practice} />
+          <input type="hidden" name="claim" value={book.claim} />
+          <input type="hidden" name="result" value={book.result} />
+          <input type="hidden" name="research_type" value={book.research_type} />
 
           <button
             type="submit"
