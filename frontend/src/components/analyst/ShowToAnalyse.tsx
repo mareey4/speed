@@ -251,7 +251,6 @@ function ShowToAnalyse({
         </table>
       </div>
 
-      {/* Modal to display the full analysis */}
       {modalContent && (
         <div
           className="modal"
