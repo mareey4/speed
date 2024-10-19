@@ -104,19 +104,17 @@ const AdminView = () => {
                   <td style={{ padding: "10px", wordWrap: "break-word" }}>
                     {book.description}
                   </td>
-                  <td style={{ padding: "10px" }}>
-                    {new Date(book.published_date).toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
+                   <td style={{ padding: "10px" }}>
+                    {book.published_date
+                      ? new Date(book.published_date).toLocaleDateString()
+                      : "N/A"}
                   </td>
                   <td style={{ padding: "10px" }}>{book.publisher}</td>
                   <td style={{ padding: "10px" }}>{book.se_practice}</td>
                   <td style={{ padding: "10px" }}>{book.claim}</td>
                   <td style={{ padding: "10px" }}>{book.result}</td>
                   <td style={{ padding: "10px" }}>{book.research_type}</td>
-                  
+
                   <td style={{ padding: "10px" }}>
                     {book.analysis ? (
                       <>
