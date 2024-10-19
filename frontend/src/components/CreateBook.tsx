@@ -15,7 +15,7 @@ const CreateBookComponent = () => {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/api/books", { method: 'POST', headers: { "Content-Type": "application/json" }, body: JSON.stringify(book) })
-      .then((res) => {
+      .then(() => {
         setBook(DefaultEmptyBook);
         // Push to /
         navigate.push("/");
