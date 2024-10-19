@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Book } from "../Book";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ShowToAnalyseProps {
   filterByAnalysis?: boolean;
@@ -58,11 +60,15 @@ function ShowToAnalyse({
         }
       );
 
+      toast.success(`Book has been ${status.toLowerCase()}!`);
+
       await fetchBooks();
     } catch (err) {
       console.log("Error updating moderation status:", err);
+      toast.error("Failed to update moderation status.");
     }
   };
+
   const buttonClass =
     "bg-pink-500 text-white p-2 w-full flex items-center justify-center rounded-lg hover:bg-pink-600 transition";
 
@@ -286,6 +292,7 @@ function ShowToAnalyse({
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }
